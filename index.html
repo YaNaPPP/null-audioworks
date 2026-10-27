@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Null Audioworks · Null One</title>
+<meta name="description" content="Null One by Null Audioworks. Hybrid noise cancellation removes 42 dB of ambient noise so you can concentrate.">
+<meta name="theme-color" content="#0e0e0d">
+<meta property="og:title" content="Null Audioworks · Null One">
+<meta property="og:description" content="Your focus deserves total silence.">
+<meta property="og:image" content="/assets/hero.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230e0e0d'/%3E%3Ctext x='16' y='23' font-family='Arial' font-size='19' fill='white' text-anchor='middle'%3EN%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500&display=swap">
+<link rel="preload" as="image" href="/assets/hero.jpg" imagesrcset="/assets/hero-1280.jpg 1280w, /assets/hero.jpg 1920w" imagesizes="100vw">
+<style>
+/* Desktop (≥1024px): the 1920 design grid scaled by --u (set in JS = viewport width / 1920).
+   Type scale: wordmark (fit to 1818u) · headline 96 · stat 64 · CTA 32 · logo 33 · email 23 · nav 19.
+   Mobile/tablet (<1024px): fluid layout — headline on top, stat + CTAs + stacked wordmark at the bottom. */
+:root{
+  --bg:#0e0e0d; --fg:#ffffff; --dim:rgba(255,255,255,.62); --line:rgba(255,255,255,.9); --line2:rgba(255,255,255,.55);
+  --sans:"Inter","Helvetica Neue",Arial,sans-serif;
+  --u:1px; --wmH:0px; --g:20px; --ease:cubic-bezier(.2,.75,.2,1);
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--fg)}
+body{font-family:var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px solid #fff;outline-offset:3px}
+img{max-width:100%}
+
+/* ---------- header (fixed) ---------- */
+.hdr{position:fixed;left:0;right:0;top:0;height:calc(var(--u)*130 + env(safe-area-inset-top,0px));z-index:20;pointer-events:none}
+.hdr > *{position:absolute;pointer-events:auto}
+.logo-target{left:calc(var(--u)*51);top:calc(var(--u)*44 + env(safe-area-inset-top,0px));font-size:calc(var(--u)*33);line-height:.86;letter-spacing:-.03em}
+.logo-target span{display:block;width:max-content}
+.nav{left:50%;transform:translateX(-50%);top:calc(var(--u)*44 + env(safe-area-inset-top,0px));display:flex;gap:calc(var(--u)*30);font-size:max(calc(var(--u)*19),13px);letter-spacing:-.01em}
+.soc{left:calc(var(--u)*1430);top:calc(var(--u)*46 + env(safe-area-inset-top,0px));display:flex;gap:calc(var(--u)*42);font-size:max(calc(var(--u)*19),13px)}
+.soc a{border-bottom:1px solid var(--line);padding-bottom:1px}
+.mail{right:calc(var(--u)*51);top:calc(var(--u)*42 + env(safe-area-inset-top,0px));font-size:max(calc(var(--u)*23),14px);letter-spacing:-.015em}
+.nav a,.soc a,.mail{transition:opacity .25s ease}
+.nav a:hover,.soc a:hover,.mail:hover{opacity:.62}
+.menu-btn,.menu{display:none}
+
+/* ---------- hero ---------- */
+.pin{position:relative}
+.hero{position:sticky;top:0;height:100svh;min-height:calc(var(--u)*900);overflow:hidden;background:#1a1816}
+.photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:56% 40%;transform-origin:56% 40%}
+.shade{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(120% 70% at 0% 62%, rgba(0,0,0,.28), transparent 55%), linear-gradient(to top, rgba(0,0,0,.22), transparent 30%)}
+.dim{position:absolute;inset:0;background:var(--bg);opacity:0;pointer-events:none}
+.h1{position:absolute;left:calc(var(--u)*47);top:calc(var(--u)*168);margin:0;font-weight:400;font-size:calc(var(--u)*96);line-height:.82;letter-spacing:-.045em}
+.h1 .ln{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
+.h1 .ln > span{display:block}
+
+.cta{position:absolute;top:calc(var(--u)*490);display:flex;justify-content:space-between;align-items:center;width:calc(var(--u)*389);
+  height:calc(var(--u)*51);font-size:max(calc(var(--u)*32),17px);letter-spacing:-.025em;padding-bottom:calc(var(--u)*6)}
+.cta::after{content:"";position:absolute;left:0;right:0;bottom:0;height:max(1px,calc(var(--u)*1.6));background:var(--line);transform-origin:left}
+.cta svg{width:max(calc(var(--u)*22),14px);height:max(calc(var(--u)*22),14px);stroke:currentColor;fill:none;stroke-width:1.6;vector-effect:non-scaling-stroke;transition:transform .35s var(--ease)}
+.cta .t{transition:transform .35s var(--ease)}
+.cta:hover .t{transform:translateX(calc(var(--u)*6 + 2px))}
+.cta.a{left:calc(var(--u)*51)}
+.cta.b{left:calc(var(--u)*488);color:var(--dim)}
+.cta.b::after{background:var(--line2)}
+
+.stat{position:absolute;left:calc(var(--u)*1430);width:calc(var(--u)*439);top:calc(var(--u)*528);transform:translateY(-100%);display:flex;flex-direction:column;gap:calc(var(--u)*14)}
+.num{display:flex;align-items:baseline;font-size:calc(var(--u)*64);line-height:1;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+.minus{margin-right:.04em}
+.col{display:inline-block;height:1em;width:1ch;overflow:hidden}
+.strip{display:flex;flex-direction:column;will-change:transform}
+.strip span{display:block;height:1em;line-height:1;text-align:center}
+.unit{margin-left:.22em;opacity:.6;letter-spacing:-.02em}
+.cap{font-size:max(calc(var(--u)*22),13px);line-height:1.2;letter-spacing:-.01em;margin:0}
+.cap span{display:block}
+
+.wm-slot{position:absolute;left:calc(var(--u)*36);bottom:calc(var(--u)*20);white-space:nowrap;line-height:1;letter-spacing:-.05em;visibility:hidden}
+.wm-slot span{display:inline-block}
+
+/* ---------- morphing wordmark layer (fixed) ---------- */
+.wm{position:fixed;inset:0;z-index:21;pointer-events:none}
+.wm .w{position:absolute;left:0;top:0;transform-origin:0 0;white-space:nowrap;line-height:1;letter-spacing:-.05em;will-change:transform}
+.wm .w .clip{display:block;overflow:hidden;padding-bottom:.04em}
+.wm .w .ch{display:inline-block}
+
+/* ---------- mobile + tablet ---------- */
+@media (max-width:1023.98px){
+  :root{--g:clamp(18px,4.6vw,36px)}
+  .hdr{height:calc(76px + env(safe-area-inset-top,0px))}
+  .logo-target{left:var(--g);top:calc(22px + env(safe-area-inset-top,0px));font-size:clamp(19px,3.2vw,26px)}
+  .nav,.soc,.mail{display:none}
+  .menu-btn{display:block;right:var(--g);top:calc(22px + env(safe-area-inset-top,0px));font:400 clamp(15px,2.4vw,19px)/1 var(--sans);letter-spacing:-.01em;color:#fff;
+    background:none;border:0;padding:4px 0 3px;border-bottom:1px solid var(--line);cursor:pointer}
+  .menu{position:fixed;inset:0;z-index:30;display:flex;flex-direction:column;justify-content:space-between;gap:32px;
+    padding:calc(96px + env(safe-area-inset-top,0px)) var(--g) calc(var(--g) + env(safe-area-inset-bottom,0px));
+    background:rgba(14,14,13,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    opacity:0;visibility:hidden;transition:opacity .35s ease, visibility 0s linear .35s}
+  .menu.open{opacity:1;visibility:visible;transition:opacity .35s ease}
+  .menu nav{display:flex;flex-direction:column;gap:6px;font-size:clamp(40px,10vw,64px);letter-spacing:-.045em;line-height:1}
+  .menu .foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;font-size:16px}
+  .menu .foot .s{display:flex;gap:22px}
+  .menu .foot .s a{border-bottom:1px solid var(--line)}
+  .menu-close{position:absolute;right:var(--g);top:calc(22px + env(safe-area-inset-top,0px));font:400 clamp(15px,2.4vw,19px)/1 var(--sans);color:#fff;background:none;border:0;
+    padding:4px 0 3px;border-bottom:1px solid var(--line);cursor:pointer}
+
+  .hero{min-height:600px}
+  .photo{object-position:58% 40%}
+  .shade{background:linear-gradient(to top, rgba(0,0,0,.55), rgba(0,0,0,.18) 48%, transparent 62%), linear-gradient(to bottom, rgba(0,0,0,.28), transparent 32%)}
+  .h1{left:calc(var(--g) - .04em);top:calc(92px + env(safe-area-inset-top,0px));font-size:clamp(42px,9.6vw,84px);line-height:.86}
+  .wm-slot{left:calc(var(--g) - .05em);bottom:calc(var(--g) - .1em + env(safe-area-inset-bottom,0px))}
+  .wm-slot span{display:block}
+  .cta{top:auto;bottom:calc(var(--wmH) + var(--g) + 26px + env(safe-area-inset-bottom,0px));height:44px;padding-bottom:8px;
+    width:calc((100% - var(--g)*2 - 16px)/2);max-width:340px;font-size:clamp(16px,2.6vw,22px)}
+  .cta svg{width:15px;height:15px}
+  .cta.a{left:var(--g)}
+  .cta.b{left:calc(var(--g) + min((100% - var(--g)*2 - 16px)/2, 340px) + 16px)}
+  .stat{left:var(--g);width:auto;right:var(--g);top:auto;transform:none;gap:10px;bottom:calc(var(--wmH) + var(--g) + 26px + 44px + 30px + env(safe-area-inset-bottom,0px))}
+  .num{font-size:clamp(44px,8vw,64px)}
+  .cap{font-size:clamp(14px,2.2vw,18px)}
+}
+@media (max-width:1023.98px) and (max-height:640px){ .stat{display:none} }
+
+/* ---------- intro choreography ---------- */
+.pre .photo{opacity:0;transform:scale(1.07)}
+.pre .hdr .fade{opacity:0;transform:translateY(-8px)}
+.pre .nav.fade{transform:translate(-50%,-8px)}
+.pre .h1 .ln > span{transform:translateY(108%)}
+.pre .cta .t,.pre .cta svg{opacity:0}
+.pre .cta::after{transform:scaleX(0)}
+.pre .stat .minus,.pre .stat .unit{opacity:0}
+.pre .cap{opacity:0;transform:translateY(10px)}
+.pre .wm .ch{transform:translateY(105%)}
+
+.go .photo{transition:opacity .9s ease, transform 2.6s var(--ease)}
+.go .hdr .fade{transition:opacity .7s ease, transform .7s var(--ease);transition-delay:calc(.35s + var(--i,0) * .05s)}
+.go .h1 .ln > span{transition:transform 1.1s var(--ease);transition-delay:calc(.5s + var(--i,0) * .12s)}
+.go .cta .t,.go .cta svg{transition:opacity .7s ease .95s, transform .35s var(--ease)}
+.go .cta::after{transition:transform 1s var(--ease);transition-delay:calc(.85s + var(--i,0) * .1s)}
+.go .stat .minus,.go .stat .unit{transition:opacity .6s ease 1.15s}
+.go .cap{transition:opacity .8s ease 1.9s, transform .8s var(--ease) 1.9s}
+.go .wm .ch{transition:transform 1s var(--ease);transition-delay:calc(1.3s + var(--i,0) * .035s)}
+
+@media (prefers-reduced-motion: reduce){ .go *{transition:none!important} }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="mb0" x="0" y="-50%" width="100%" height="200%"><feGaussianBlur id="g0" stdDeviation="0 0"/></filter>
+  <filter id="mb1" x="0" y="-50%" width="100%" height="200%"><feGaussianBlur id="g1" stdDeviation="0 0"/></filter>
+</svg>
+
+<div id="root" class="pre">
+  <header class="hdr">
+    <a class="logo-target fade" id="logo" style="--i:0" href="/" aria-label="Null Audioworks, home"><span>Null</span><span>Audioworks</span></a>
+    <nav class="nav fade" style="--i:1" aria-label="Main">
+      <a href="#">Sound</a><a href="#">Features</a><a href="#">Our Tech</a><a href="#">Support</a>
+    </nav>
+    <div class="soc"><a class="fade" style="--i:4" href="#">Inst</a><a class="fade" style="--i:5" href="#">Fb</a><a class="fade" style="--i:6" href="#">X</a></div>
+    <a class="mail fade" style="--i:7" href="mailto:hello@null-audio.com">hello@null-audio.com</a>
+    <button class="menu-btn fade" style="--i:2" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
+  </header>
+
+  <div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menu">
+    <button class="menu-close" id="menuClose">Close</button>
+    <nav aria-label="Main mobile"><a href="#">Sound</a><a href="#">Features</a><a href="#">Our Tech</a><a href="#">Support</a></nav>
+    <div class="foot"><div class="s"><a href="#">Inst</a><a href="#">Fb</a><a href="#">X</a></div><a href="mailto:hello@null-audio.com">hello@null-audio.com</a></div>
+  </div>
+
+  <main class="pin" id="pin">
+    <section class="hero" id="hero" aria-label="Null One">
+      <img class="photo" src="/assets/hero.jpg" srcset="/assets/hero-1280.jpg 1280w, /assets/hero.jpg 1920w" sizes="100vw"
+        alt="Woman wearing Null One headphones, focused at her desk while colleagues blur past" fetchpriority="high">
+      <div class="shade"></div>
+      <h1 class="h1 fadeout"><span class="ln"><span style="--i:0">Your focus deserves</span></span><span class="ln"><span style="--i:1">total silence</span></span></h1>
+      <div class="stat fadeout" aria-label="Minus 42 dB of ambient noise removed by hybrid cancellation">
+        <div class="num" aria-hidden="true"><span class="minus">−</span>
+          <span class="col"><span class="strip" id="s0" style="filter:url(#mb0)"></span></span>
+          <span class="col"><span class="strip" id="s1" style="filter:url(#mb1)"></span></span><span class="unit">dB</span></div>
+        <p class="cap" aria-hidden="true"><span>of ambient noise removed</span><span>by hybrid cancellation</span></p>
+      </div>
+      <a class="cta a fadeout" style="--i:0" href="#"><span class="t">Buy Null One</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h17M14 5l7 7-7 7"/></svg></a>
+      <a class="cta b fadeout" style="--i:1" href="#"><span class="t">Listen Inside</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12h17M14 5l7 7-7 7"/></svg></a>
+      <div class="wm-slot" id="slot" aria-hidden="true"><span id="sNull">Null</span> <span id="sAudio">Audioworks</span></div>
+      <div class="dim" id="dim"></div>
+    </section>
+  </main>
+
+  <div class="wm" aria-hidden="true">
+    <div class="w" id="wNull"><span class="clip"></span></div>
+    <div class="w" id="wAudio"><span class="clip"></span></div>
+  </div>
+</div>
+
+<script>
+(()=>{
+  const root=document.getElementById('root'), de=document.documentElement;
+  const hero=document.getElementById('hero'), pin=document.getElementById('pin'), slot=document.getElementById('slot');
+  const dim=document.getElementById('dim'), fades=[...document.querySelectorAll('.fadeout')], logoParts=[...document.querySelectorAll('#logo span')];
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const desk=matchMedia('(min-width:1024px)');
+  const words=[
+    {el:document.getElementById('wNull'), src:document.getElementById('sNull'), tgt:logoParts[0], txt:'Null', off:0},
+    {el:document.getElementById('wAudio'),src:document.getElementById('sAudio'),tgt:logoParts[1], txt:'Audioworks', off:4}
+  ];
+  words.forEach(w=>{w.el.firstElementChild.innerHTML=[...w.txt].map((c,i)=>`<span class="ch" style="--i:${i+w.off}">${c}</span>`).join('')});
+
+  let U=1, geo=[], range=1, lastW=0;
+
+  function layout(){
+    const W=de.clientWidth; lastW=W;
+    U=W/1920; de.style.setProperty('--u',U+'px');
+    let fs;
+    if(desk.matches){
+      slot.style.fontSize='100px'; fs=100*(1818*U)/slot.getBoundingClientRect().width;
+    }else{
+      const g=parseFloat(getComputedStyle(de).getPropertyValue('--g'))||20;
+      slot.style.fontSize='100px'; fs=100*(W-g*2)/document.getElementById('sAudio').getBoundingClientRect().width;
+      fs=Math.min(fs, hero.clientHeight*0.17);
+    }
+    slot.style.fontSize=fs+'px';
+    de.style.setProperty('--wmH',slot.getBoundingClientRect().height+'px');
+    const hr=hero.getBoundingClientRect();
+    geo=words.map(w=>{
+      w.el.style.fontSize=fs+'px';
+      const s=w.src.getBoundingClientRect(), t=w.tgt.getBoundingClientRect();
+      const tFS=parseFloat(getComputedStyle(w.tgt).fontSize);
+      return {sx:s.left, sy:s.top-hr.top, tx:t.left, ty:t.top, k:tFS/fs};
+    });
+    range=hero.clientHeight*.6;
+    sizePin(); update();
+  }
+  function sizePin(){ pin.style.height=(Math.max(innerHeight,hero.clientHeight)+range)+'px'; }
+
+  const smooth=x=>x*x*(3-2*x);
+  function update(){
+    const raw=Math.min(1,Math.max(0,scrollY/range));
+    const lead=smooth(Math.min(1,raw/.7));
+    const lag=smooth(Math.min(1,Math.max(0,(raw-.35)/.65)));
+    const f=Math.min(1,raw/.35);
+    fades.forEach(el=>{el.style.opacity=(1-f).toFixed(3);el.style.translate=`0 ${(-f*30).toFixed(1)}px`;el.style.pointerEvents=f>.5?'none':''});
+    dim.style.opacity=(raw*.5).toFixed(3);
+    const lo=raw>=1?'0':(1-Math.min(1,raw/.25)).toFixed(3); logoParts.forEach(e=>e.style.opacity=lo);
+    words.forEach((w,i)=>{const g=geo[i]; if(!g)return;
+      const px=(i&&desk.matches)?lag:lead;
+      const x=g.sx+(g.tx-g.sx)*px, y=g.sy+(g.ty-g.sy)*lead, k=1+(g.k-1)*lead;
+      w.el.style.transform=`translate(${x}px,${y}px) scale(${k})`;});
+  }
+  addEventListener('scroll',update,{passive:true});
+  addEventListener('resize',()=>{ if(de.clientWidth!==lastW) layout(); else { sizePin(); update(); } });
+  desk.addEventListener('change',layout);
+
+  // mobile menu
+  const menu=document.getElementById('menu'), btn=document.getElementById('menuBtn');
+  const setMenu=o=>{menu.classList.toggle('open',o);btn.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':'';if(o)document.getElementById('menuClose').focus();else btn.focus()};
+  btn.onclick=()=>setMenu(true); document.getElementById('menuClose').onclick=()=>setMenu(false);
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+  addEventListener('keydown',e=>{if(e.key==='Escape'&&menu.classList.contains('open'))setMenu(false)});
+
+  // −42 dB counter
+  const cols=[{el:document.getElementById('s0'),g:document.getElementById('g0'),target:4,cycles:1,dur:1500},
+              {el:document.getElementById('s1'),g:document.getElementById('g1'),target:2,cycles:2,dur:1800}];
+  cols.forEach(c=>{let h='';for(let k=0;k<=c.cycles;k++)for(let d=0;d<10;d++)h+=`<span>${d}</span>`;c.el.innerHTML=h;c.stop=c.cycles*10+c.target});
+  const ease4=t=>1-Math.pow(1-t,4); let t0;
+  const setc=(c,pos,b)=>{c.el.style.transform=`translateY(${-pos}em)`;c.g.setAttribute('stdDeviation',`0 ${b.toFixed(2)}`)};
+  function roll(now){const t=now-t0;let done=true;
+    cols.forEach(c=>{const p=Math.min(1,Math.max(0,t/c.dur)),e=ease4(p),v=(ease4(Math.min(1,p+.01))-e)*c.stop*100;
+      setc(c,e*c.stop,Math.min(6,v*2.2)); if(p<1)done=false});
+    if(!done)requestAnimationFrame(roll)}
+
+  function start(){
+    layout();
+    requestAnimationFrame(()=>{
+      root.classList.add('go'); root.classList.remove('pre');
+      if(reduce){cols.forEach(c=>setc(c,c.stop,0));return}
+      setTimeout(()=>{t0=performance.now();requestAnimationFrame(roll)},1100);
+    });
+  }
+  (document.fonts&&document.fonts.ready?document.fonts.ready:Promise.resolve()).then(start);
+})();
+</script>
+</body>
+</html>
