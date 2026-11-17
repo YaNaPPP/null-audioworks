@@ -1,10 +1,12 @@
 # Null Audioworks — Null One
 
-First screen (hero) for the Null One headphones by Null Audioworks.
+Concept landing page for the Null One noise-cancelling headphones.
 
-- Static site: `index.html` + the hero image (hero.webp), no build step.
-- Load sequence: photo settles, headline and CTAs reveal, the −42 dB counter rolls, the wordmark rises.
-- On scroll the full-width wordmark shrinks into the header logo.
-- Responsive: scaled 1920 grid on desktop (≥1024px), stacked layout with a menu overlay below that.
+Sections: hero (load sequence + wordmark-to-logo transition) · the problem (scroll-revealed statement) ·
+silence anywhere (pinned horizontal scroll, dB counters) · product reveal (clip-path zoom) ·
+how silence is made (scroll-driven wave cancellation on canvas) · listen inside (live Web Audio café, hold for silence) ·
+details · buy · footer.
 
-Deployed on Vercel.
+- Static site, no build step: `index.html`, `img/`, `vendor/` (GSAP 3.12.5 + ScrollTrigger, Lenis 1.1.13).
+- `src-img/` holds the original AI-generated images (not deployed).
+- Deployed on Vercel from `main`.
