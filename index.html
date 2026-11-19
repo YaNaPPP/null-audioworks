@@ -45,8 +45,9 @@ img{max-width:100%}
 .menu-btn,.menu{display:none}
 
 /* ---------- hero ---------- */
-.pin{position:relative}
-.hero{position:sticky;top:0;height:100svh;min-height:calc(var(--u)*900);overflow:hidden;background:#1a1816}
+.pin{position:sticky;top:0;z-index:0}
+.after{position:relative;z-index:1;background:var(--bg);box-shadow:0 -40px 80px rgba(0,0,0,.35)}
+.hero{position:relative;height:100svh;min-height:calc(var(--u)*900);overflow:hidden;background:#1a1816}
 .photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:56% 40%;transform-origin:56% 40%}
 .shade{position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(120% 70% at 0% 62%, rgba(0,0,0,.28), transparent 55%), linear-gradient(to top, rgba(0,0,0,.22), transparent 30%)}
@@ -162,7 +163,7 @@ img{max-width:100%}
 .btn-u.muted{color:var(--dim)} .btn-u.muted::after{background:var(--line2)}
 
 /* --- manifesto --- */
-.manifesto{display:grid;grid-template-columns:calc(var(--u)*437) 1fr;padding-top:calc(var(--pad)*1.1)}
+.manifesto{display:grid;grid-template-columns:calc(var(--u)*437) 1fr;padding-top:calc(var(--u)*150 + 40px)}
 .manifesto .stmt{font-size:var(--s-big);line-height:1.06;letter-spacing:-.035em;margin:0;max-width:22em}
 .manifesto .w{display:inline-block;opacity:.14;filter:blur(7px);will-change:opacity,filter}
 .facts{grid-column:2;display:grid;grid-template-columns:repeat(2,minmax(0,calc(var(--u)*560)));gap:calc(var(--u)*48);margin-top:calc(var(--u)*120 + 24px)}
@@ -519,19 +520,19 @@ img{max-width:100%}
       const tFS=parseFloat(getComputedStyle(w.tgt).fontSize);
       return {sx:s.left, sy:s.top-hr.top, tx:t.left, ty:t.top, k:tFS/fs};
     });
-    range=hero.clientHeight*.6;
+    range=hero.clientHeight*.5;
     sizePin(); update();
   }
-  function sizePin(){ pin.style.height=(Math.max(innerHeight,hero.clientHeight)+range)+'px'; }
+  function sizePin(){ pin.style.height=hero.clientHeight+'px'; }
 
   const smooth=x=>x*x*(3-2*x);
   function update(){
     const raw=Math.min(1,Math.max(0,scrollY/range));
-    const lead=smooth(Math.min(1,raw/.7));
-    const lag=smooth(Math.min(1,Math.max(0,(raw-.35)/.65)));
-    const f=Math.min(1,raw/.35);
+    const lead=smooth(Math.min(1,raw/.6));
+    const lag=smooth(Math.min(1,Math.max(0,(raw-.3)/.7)));
+    const f=Math.min(1,raw/.5);
     fades.forEach(el=>{el.style.opacity=(1-f).toFixed(3);el.style.translate=`0 ${(-f*30).toFixed(1)}px`;el.style.pointerEvents=f>.5?'none':''});
-    dim.style.opacity=(raw*.5).toFixed(3);
+    dim.style.opacity=(raw*.6).toFixed(3);
     const lo=raw>=1?'0':(1-Math.min(1,raw/.25)).toFixed(3); logoParts.forEach(e=>e.style.opacity=lo);
     words.forEach((w,i)=>{const g=geo[i]; if(!g)return;
       const px=(i&&desk.matches)?lag:lead;
