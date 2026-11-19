@@ -529,16 +529,23 @@ img{max-width:100%}
   function update(){
     const raw=Math.min(1,Math.max(0,scrollY/range));
     const lead=smooth(Math.min(1,raw/.6));
-    const lag=smooth(Math.min(1,Math.max(0,(raw-.3)/.7)));
-    const f=Math.min(1,raw/.5);
-    fades.forEach(el=>{el.style.opacity=(1-f).toFixed(3);el.style.translate=`0 ${(-f*30).toFixed(1)}px`;el.style.pointerEvents=f>.5?'none':''});
+    const f=smooth(Math.min(1,raw/.22));           // hero copy clears before the wordmark passes over it
+    fades.forEach(el=>{el.style.opacity=(1-f).toFixed(3);el.style.translate=`0 ${(-f*24).toFixed(1)}px`;el.style.pointerEvents=f>.5?'none':''});
     dim.style.opacity=(raw*.6).toFixed(3);
     const lo=raw>=1?'0':(1-Math.min(1,raw/.25)).toFixed(3); logoParts.forEach(e=>e.style.opacity=lo);
-    words.forEach((w,i)=>{const g=geo[i]; if(!g)return;
-      const px=(i&&desk.matches)?lag:lead;
-      const x=g.sx+(g.tx-g.sx)*px, y=g.sy+(g.ty-g.sy)*lead, k=1+(g.k-1)*lead;
-      w.el.style.transform=`translate(${x}px,${y}px) scale(${k})`;});
+    const N=geo[0], A=geo[1]; if(!N||!A)return;
+    // "Null" leads; "Audioworks" travels with it as one rigid line, then folds under it in the last stretch
+    const k=1+(N.k-1)*lead;
+    const nx=N.sx+(N.tx-N.sx)*lead, ny=N.sy+(N.ty-N.sy)*lead;
+    const fy=smooth(Math.min(1,Math.max(0,(lead-.6)/.2)));   // first drop to the second line...
+    const fx=smooth(Math.min(1,Math.max(0,(lead-.72)/.28)));  // ...then slide under "Null"
+    const r=k/N.k;                                   // converts target offsets to the current scale
+    const ox=(A.sx-N.sx)*k*(1-fx)+(A.tx-N.tx)*r*fx;
+    const oy=(A.sy-N.sy)*k*(1-fy)+(A.ty-N.ty)*r*fy;
+    words[0].el.style.transform=`translate(${nx}px,${ny}px) scale(${k})`;
+    words[1].el.style.transform=`translate(${nx+ox}px,${ny+oy}px) scale(${k})`;
   }
+
   addEventListener('scroll',update,{passive:true});
   addEventListener('resize',()=>{ if(de.clientWidth!==lastW) layout(); else { sizePin(); update(); } });
   desk.addEventListener('change',layout);
